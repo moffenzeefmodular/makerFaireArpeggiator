@@ -56,10 +56,6 @@ int touchSensor3 = 0;
 int touchSensor4 = 0;
 int touchSensor5 = 0;
 
-int pot1Raw = 0;
-int pot2Raw = 0;
-int pot3Raw = 0;
-
 boolean gate1[2];
 boolean gate2[2];
 boolean gate3[2];
@@ -474,8 +470,7 @@ void loop() {
   gate5[0] = cleanSensorOutput5 >= thresh; // Comparator threshold for touch sensor
 
   // Divide
-  pot2Raw = (analogRead(31));
-  divide = map(pot2Raw, 0, 1023, 8, 1); // Division amounts
+  divide = map(analogRead(31), 0, 1023, 8, 1); // Division amounts
 
   if (stepCount % divide == 0) {
     gate1[1] = 0;
@@ -613,8 +608,7 @@ void loop() {
   filter4.frequency(filterSum4);
   filter5.frequency(filterSum5);
 
-  pot1Raw = (analogRead(33));
-  float decayTime = mapfloat(pot1Raw, 0, 1023, 12.0, 200.0); // Max decay Range
+  float decayTime = mapfloat(analogRead(33), 0, 1023, 12.0, 200.0); // Max decay Range
 
   envelope1.decay(decayTime);
   envelope2.decay(decayTime);
